@@ -33,10 +33,14 @@
 #include "EE241.h"
 #include "WAIT1.h"
 #include "GI2C1.h"
-#include "MCUC1.h"
 #include "CI2C1.h"
 #include "TempSensor.h"
 #include "AdcLdd1.h"
+#include "row1.h"
+#include "BitIoLdd1.h"
+#include "col1.h"
+#include "BitIoLdd2.h"
+#include "KSDK1.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -44,13 +48,17 @@
 #include "IO_Map.h"
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include <extras/extras_stdlib.h>
+#include <string.h>
 static uint16_t TempMeasure;
 int TempMeasureInt;
+int a = 0;
 
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
 int main(void)
 /*lint -restore Enable MISRA rule (6.3) checking. */
 {
+	WAIT1_Waitms(10); 
   /* Write your local variable definition here */
 	char test1[16] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F};
 	char test2[16] = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F};
@@ -80,8 +88,11 @@ int main(void)
   /*** End of RTOS startup code.  ***/
   /*** Processor Expert end of main routine. DON'T MODIFY THIS CODE!!! ***/
   for(;;){
-	  TempSensor_Measure(TRUE);
-	  TempSensor_GetValue16(&TempMeasure);
+	  a=1;
+	  WAIT1_Waitms(90);
+	  row1_PutVal(1);
+	  WAIT1_Waitms(90);
+	 a= col1_GetRawVal();
   }
   /*** Processor Expert end of main routine. DON'T WRITE CODE BELOW!!! ***/
 } /*** End of main routine. DO NOT MODIFY THIS TEXT!!! ***/

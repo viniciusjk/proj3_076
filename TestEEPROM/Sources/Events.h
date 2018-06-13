@@ -37,10 +37,14 @@
 #include "EE241.h"
 #include "WAIT1.h"
 #include "GI2C1.h"
-#include "MCUC1.h"
 #include "CI2C1.h"
 #include "TempSensor.h"
 #include "AdcLdd1.h"
+#include "row1.h"
+#include "BitIoLdd1.h"
+#include "col1.h"
+#include "BitIoLdd2.h"
+#include "KSDK1.h"
 
 #ifdef __cplusplus
 extern "C" {
